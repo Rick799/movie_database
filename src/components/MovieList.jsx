@@ -10,6 +10,7 @@ function MovieList({ movies }) {
           <Link to={`/details/${movie.imdbID}`} key={movie.imdbID}>
             <div className=" border-8 border-slate-900 hover:border-yellow-400 bg-white rounded-lg shadow flex  h-full w-full relative hover:scale-105 duration-300">
               <div className="w-full h-full">
+                {/* Movie poster */}
                 <img
                   className="w-full h-full object-cover"
                   src={movie.Poster}
@@ -18,11 +19,14 @@ function MovieList({ movies }) {
               </div>
               <div className="opacity-0 hover:opacity-100 hover:border-1 hover:rounded-sm absolute top-0 left-0 w-full h-full rounded-lg bg-black bg-opacity-70 p-2 transition-opacity duration-300">
                 <div className="h-full flex flex-col items-center justify-evenly text-lg lg:text-xl text-white text-center cursor-pointer">
+                  {/* Movie title */}
                   <h3 className="lg:text-2xl font-bold">{movie.Title}</h3>
+                  {/* IMDb Rating */}
                   <p className="font-semibold">
                     IMDb Rating:{" "}
                     <span className="font-extrabold">{movie.imdbRating}</span>
                   </p>
+                  {/* View Details button */}
                   <button className="border-2 px-2 py-1 font-semibold rounded-md hover:bg-yellow-500 hover:scale-105">
                     View Details
                   </button>

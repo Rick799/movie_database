@@ -7,7 +7,9 @@ function MovieDetails() {
   const [movieDetails, setMovieDetails] = useState(null);
 
   useEffect(() => {
+    // Fetch movie details when the component mounts or imdbID changes
     const fetchMovieDetails = async () => {
+      // Make an API request to get movie details
       try {
         const response = await fetch(
           `https://www.omdbapi.com/?apikey=d860c9a&i=${imdbID}`
@@ -24,6 +26,7 @@ function MovieDetails() {
   }, [imdbID]);
 
   if (!movieDetails) {
+    // Display a loading message while fetching data
     return <div className="text-center">Loading...</div>;
   }
 
@@ -40,9 +43,17 @@ function MovieDetails() {
   } = movieDetails;
 
   return (
-    <div className="h-0 text-black font-serif">
+    <div
+      className="h-screen  bg-cover bg-center text-black font-serif"
+      style={{
+        backgroundImage: `url(${Poster})`,
+        opacity: 0.9,
+      }}
+    >
+
       <div className="w-10/12 pt-10 flex-wrap flex justify-evenly items-center text-xl mx-auto">
         <div className="pb-5 md:pb-0">
+          {/* Movie poster */}
           <img
             className=" border-8 border-slate-800 hover:border-yellow-400 object-cover"
             src={Poster}
@@ -50,9 +61,11 @@ function MovieDetails() {
           />
         </div>
         <div className="w-11/12 md:w-4/12">
+          {/* Back button to navigate back to MovieList */}
           <Link to="/" className="cursor-pointer">
             <AiFillBackward className="text-2xl font-bold absolute top-72 lg:top-64 left-2" />
           </Link>
+          {/* Display movie details */}
           <h2 className="text-3xl font-bold pb-10 text-center md:text-left">
             {Title}
           </h2>
@@ -77,6 +90,7 @@ function MovieDetails() {
           </p>
           <h3 className="font-semibold">Ratings:</h3>
           <ul className="">
+            {/* Display movie ratings */}
             {Ratings.map((rating) => (
               <li key={rating.Source}>
                 <span>{rating.Source}</span>:

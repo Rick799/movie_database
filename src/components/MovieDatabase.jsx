@@ -14,6 +14,7 @@ function MovieDatabase() {
   //   fetchMovies();
   // }, [sortByRating, sortByGenre]);
 
+  // Fetch movies based on search term and sorting options
   const fetchMovies = async () => {
     try {
       let apiUrl = `https://www.omdbapi.com/?apikey=d860c9a&s=${searchTerm}&y=&type=movie`;
@@ -41,24 +42,29 @@ function MovieDatabase() {
     }
   };
 
+  // Handle movie search input change
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
 
+  // Handle movie search on Enter key press
   const handleKeyPress = (event) => {
     if (event.key === "Enter") {
       fetchMovies();
     }
   };
 
+  // Handle sorting movies by rating
   const handleSortByRating = (event) => {
     setSortByRating(event.target.value);
   };
 
+  // Handle sorting movies by genre
   const handleSortByGenre = (event) => {
     setSortByGenre(event.target.value);
   };
 
+  // Filter movies based on selected genre
   const filteredMovies = movies.filter((movie) => {
     if (sortByGenre) {
       return movie.Genre.includes(sortByGenre);
@@ -66,6 +72,7 @@ function MovieDatabase() {
     return true;
   });
 
+  // Sort movies based on selected rating order
   const sortedMovies = [...filteredMovies].sort((a, b) => {
     const ratingA = parseFloat(a.imdbRating) || 0;
     const ratingB = parseFloat(b.imdbRating) || 0;
@@ -78,6 +85,7 @@ function MovieDatabase() {
     return 0;
   });
 
+  // Reset the movie database to its initial state
   const resetMovieDatabase = () => {
     setMovies([]); // Reset the movies to an empty array or initial state
     setSearchTerm("");
