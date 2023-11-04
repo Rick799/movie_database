@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function MovieList({ movies }) {
   return (
     <div className="h-0">
-      <div className="pt-20 w-10/12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-y-20 gap-x-10">
+      <div className="py-20 w-10/12 mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-y-20 gap-x-10">
         {movies.map((movie) => (
           <Link to={`/details/${movie.imdbID}`} key={movie.imdbID}>
             <div className=" border-8 border-slate-900 hover:border-yellow-400 bg-white rounded-lg shadow flex  h-full w-full relative hover:scale-105 duration-300">

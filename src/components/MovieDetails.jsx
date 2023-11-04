@@ -16,7 +16,6 @@ function MovieDetails() {
         );
         const data = await response.json();
         setMovieDetails(data);
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -43,33 +42,32 @@ function MovieDetails() {
   } = movieDetails;
 
   return (
-    <div
-      className="h-screen  bg-cover bg-center text-black font-serif"
-      style={{
-        backgroundImage: `url(${Poster})`,
-        opacity: 0.9,
-      }}
-    >
-
-      <div className="w-10/12 pt-10 flex-wrap flex justify-evenly items-center text-xl mx-auto">
+    <div className="h-screen text-black font-serif overflow-y-auto relative">
+      {/* Background image with blur effect */}
+      <div
+        className="absolute inset-0 bg-cover bg-center filter blur-md"
+        style={{
+          backgroundImage: `url(${Poster})`,
+        }}
+      ></div>
+      <div className="w-10/12 py-10 flex-wrap flex justify-evenly items-center text-xl mx-auto relative">
         <div className="pb-5 md:pb-0">
-          {/* Movie poster */}
+          {/* Movie poster (as a foreground image) */}
           <img
-            className=" border-8 border-slate-800 hover:border-yellow-400 object-cover"
+            className="border-8 border-slate-800 hover:border-yellow-400 object-cover"
             src={Poster}
             alt={Title}
           />
         </div>
-        <div className="w-11/12 md:w-4/12">
+        <div className="w-11/12 md:w-4/12  bg-white bg-opacity-70 p-3 rounded-lg shadow-xl shadow-black">
           {/* Back button to navigate back to MovieList */}
           <Link to="/" className="cursor-pointer">
-            <AiFillBackward className="text-2xl font-bold absolute top-72 lg:top-64 left-2" />
+            <AiFillBackward className="text-white text-2xl font-bold absolute top-2 -left-8 lg:-left-20" />
           </Link>
           {/* Display movie details */}
-          <h2 className="text-3xl font-bold pb-10 text-center md:text-left">
+          <h2 className="text-3xl font-bold pb-10 text-center ">
             {Title}
           </h2>
-          {/*<p>Year: {Year}</p>*/}
           <p>
             Released: <span className="font-bold ml-1">{Released}</span>
           </p>
